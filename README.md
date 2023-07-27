@@ -20,7 +20,7 @@ docker compose exec cbioportal metaImport.py -u http://cbioportal:8080 -s study/
 ```
 
 Restart the cbioportal container after importing:
-```
+``` 
 docker compose restart cbioportal
 ```
 
