@@ -1,0 +1,47 @@
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+#     - name: pwd
+#       run: pwd
+#       shell: bash
+#     - name: ls
+#       run: ls
+#       shell: bash
+#     - name: run init
+#       run: ./init.sh
+#       shell: bash
+    - name: Context
+      uses: okteto/context@latest
+      with:
+        url: ${{secrets.OKTETO_URL}}
+        token: ${{ secrets.OKTETO_TOKEN }}
+        
+#     - name: "Activate Namespace"
+#       uses: okteto/namespace@latest
+#       with:
+#         name: justinjao
+
+#     - name: "Trigger the pipeline"
+#       uses: okteto/pipeline@latest
+#       with:
+#         name: pr-${{ github.event.number }}
+#         timeout: 8m
+#         skipIfExists: true
+#         variables: "DOCKER_IMAGE_CBIOPORTAL=cbioportal/cbioportal:5.3.8,DOCKER_IMAGE_SESSION_SERVICE=cbioportal/session-service:0.6.1,DOCKER_IMAGE_MYSQL=mysql:5.7"
+
+#         variables: "DB_HOST=mysql,CONFIG_PATH=/tmp/config.yaml"
+
+    - name: Deploy preview environment
+      uses: okteto/deploy-preview@latest
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: pr-${{ github.event.number }}-justinjao
+        timeout: 15m

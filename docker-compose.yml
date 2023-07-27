@@ -11,7 +11,7 @@ services:
       - "8080:8080"
     volumes:
      - ./study:/study/
-     - ./config/portal.properties:/cbioportal/portal.properties:ro
+     - ./config/portal.properties:/cbioportal/portal.properties
     depends_on:
      - cbioportal-database
      - cbioportal-session
@@ -28,8 +28,8 @@ services:
       MYSQL_PASSWORD: somepassword
       MYSQL_ROOT_PASSWORD: somepassword
     volumes:
-     - ./data/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql:ro
-     - ./data/seed.sql.gz:/docker-entrypoint-initdb.d/seed.sql.gz:ro
+     - ./data/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql
+     - ./data/seed.sql.gz:/docker-entrypoint-initdb.d/seed.sql.gz
      - cbioportal_mysql_data:/var/lib/mysql
     networks:
      - cbio-net
