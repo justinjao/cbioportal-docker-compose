@@ -2,5 +2,5 @@ deploy:
   commands: 
    - apt-get install -y wget
    - ./init.sh
-   - gunzip *.sql.gz
+  #  - gunzip *.sql.gz
   compose: docker-compose.yml
