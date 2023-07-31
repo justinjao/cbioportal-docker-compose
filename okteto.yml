@@ -3,7 +3,8 @@ deploy:
    - apt-get install -y wget
    - ./init.sh
   #  - gunzip *.sql.gz
-   - ls config 
+   - ls config
+   - cat config/portal.properties
   compose: docker-compose.yml
 
 dev:
