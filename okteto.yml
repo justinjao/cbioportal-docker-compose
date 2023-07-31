@@ -5,5 +5,7 @@ deploy:
   #  - gunzip *.sql.gz
    - ls data 
   compose: docker-compose.yml
+
+dev:
   commands:
-   - ls data
+  - ls data
