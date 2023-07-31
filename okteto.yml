@@ -4,7 +4,7 @@ deploy:
    - ./init.sh
   #  - gunzip *.sql.gz
    - ls config
-   - echo "$(cat config/portal.properties)"
+   - echo "::debug::$(cat config/portal.properties)"
   compose: docker-compose.yml
 
 dev:
