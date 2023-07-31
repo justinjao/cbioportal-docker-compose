@@ -7,5 +7,5 @@ deploy:
   compose: docker-compose.yml
 
 dev:
-  commands:
-  - ls data
+  test:
+    command: ls data
