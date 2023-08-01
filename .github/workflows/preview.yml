@@ -3,7 +3,7 @@ on:
     branches:
       - test-master
  
-jobs:
+jobs:  
   preview:
     runs-on: ubuntu-latest
     steps:
