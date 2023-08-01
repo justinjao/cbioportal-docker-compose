@@ -4,7 +4,7 @@ deploy:
    - ./init.sh
   #  - gunzip *.sql.gz
    - ls config
-   - echo "::debug::$(cat config/portal.properties)"
+   - okteto build
   compose: docker-compose.yml
 
 dev:
