@@ -15,8 +15,8 @@ jobs:
 #       run: ls
 #       shell: bash
 
-    - name: run init
-      run: ./init.sh
+#     - name: run init
+#       run: ./init.sh
 #       shell: bash
     - name: Context
       uses: okteto/context@latest
