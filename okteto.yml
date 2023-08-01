@@ -2,6 +2,6 @@ deploy:
   commands: 
    - apt-get install -y wget
    - ./init.sh
-   # - okteto build
+   - okteto build
   #  - gunzip *.sql.gz
   compose: docker-compose.yml
