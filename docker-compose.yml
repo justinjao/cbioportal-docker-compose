@@ -4,7 +4,7 @@ services:
   cbioportal:
     restart: unless-stopped
     image: ${DOCKER_IMAGE_CBIOPORTAL}
-    container_name: cbioportal-container
+    container_name: cbioportal-container 
     environment:
       SHOW_DEBUG_INFO: "true"
     ports:
