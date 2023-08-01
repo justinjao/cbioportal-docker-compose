@@ -14,14 +14,15 @@ jobs:
 #     - name: ls
 #       run: ls
 #       shell: bash
-    - name: run init
-      run: ./init.sh
+
 #       shell: bash
     - name: Context
       uses: okteto/context@latest
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
+    - name: run init
+      run: ./init.sh
         
 #     - name: "Activate Namespace"
 #       uses: okteto/namespace@latest
