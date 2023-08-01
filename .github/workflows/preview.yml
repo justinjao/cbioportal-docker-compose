@@ -23,9 +23,6 @@ jobs:
         token: ${{ secrets.OKTETO_TOKEN }}
     - name: run init
       run: ./init.sh
-      
-    - name: okteto build
-      run: okteto build
         
 #     - name: "Activate Namespace"
 #       uses: okteto/namespace@latest
