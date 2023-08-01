@@ -1,6 +1,6 @@
 version: '3'
 
-services:
+services: 
   cbioportal:
     restart: unless-stopped
     image: ${DOCKER_IMAGE_CBIOPORTAL}
