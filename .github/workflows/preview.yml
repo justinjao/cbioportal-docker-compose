@@ -23,10 +23,12 @@ jobs:
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
-    - name: run init
-      run: ./init.sh
-    - name: "Build"
-      uses: okteto/build@latest
+
+#     - name: run init
+#       run: ./init.sh
+      
+#     - name: "Build"
+#       uses: okteto/build@latest
         
 #     - name: "Activate Namespace"
 #       uses: okteto/namespace@latest
