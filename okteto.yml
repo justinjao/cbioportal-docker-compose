@@ -1,7 +1,7 @@
 deploy:
   commands: 
-   - apt-get install -y wget
+   # - apt-get install -y wget
    # - ./init.sh
-   # - okteto build
+   - okteto build -t okteto.dev/cbioportal-docker-compose-cbioportal:okteto-with-volume-mounts
   #  - gunzip *.sql.gz
   compose: docker-compose.yml
