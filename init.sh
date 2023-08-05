@@ -2,7 +2,7 @@
 for d in config data study; do
     cd $d; ./init.sh
     cd ..
-done
+done 
 
 # add override docker file for arm64
 # see https://github.com/cBioPortal/cbioportal/issues/9829
