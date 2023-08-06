@@ -17,9 +17,8 @@ jobs:
 #     - name: run init
 #       run: ./init.sh
 #       shell: bash
-    - name: install Okteto CLI
+    - name: check okteto
       run: |
-          curl https://get.okteto.com -sSfL | sh
           okteto context use https://justinjao.okteto.com
     - name: Context
       uses: okteto/context@latest
