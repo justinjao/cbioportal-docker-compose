@@ -40,6 +40,12 @@ jobs:
 
 #         variables: "DB_HOST=mysql,CONFIG_PATH=/tmp/config.yaml"
 
+    - name: Context
+      uses: okteto/context@latest
+      with:
+        url: ${{secrets.OKTETO_URL}}
+        token: ${{ secrets.OKTETO_TOKEN }}
+
     - name: Deploy preview environment
       uses: okteto/deploy-preview@latest
       env:
