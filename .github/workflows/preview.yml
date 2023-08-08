@@ -19,6 +19,7 @@ jobs:
 #       shell: bash
     - name: Wait Script
       run: |
+          chmod +x waitFor200.sh
           ./waitFor200.sh "https://google.com"
     - name: Context
       uses: okteto/context@latest
