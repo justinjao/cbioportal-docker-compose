@@ -54,11 +54,6 @@ services:
       - cbioportal_mongo_data:/data/db
     networks:
       - cbio-net
-  cbioportal-ping:
-    image: ${DOCKER_IMAGE_CBIOPORTAL}
-    depends_on:
-      - cbioportal
-    entrypoint: [ "bash", "-c", "chmod +x waitFor200.sh && ./waitFor200.sh https://google.com"]      
 
     
     
