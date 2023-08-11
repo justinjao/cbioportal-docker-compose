@@ -65,7 +65,12 @@ jobs:
   import:
     runs-on: ubuntu-latest
     needs: preview
-    container: registry.cloud.okteto.net/justinjao/cbioportal-docker-compose-cbioportal:okteto-with-volume-mounts # cbioportal-container
+    container: 
+      image: cbioportal/cbioportal:5.3.8
+#       image: registry.cloud.okteto.net/justinjao/cbioportal-docker-compose-cbioportal:okteto-with-volume-mounts # cbioportal-container
+#       credentials:
+#         username: ${{ github.actor }}
+#         password: ${{ secrets.github_token }}
     steps:
       - name: import-data
         run: |
