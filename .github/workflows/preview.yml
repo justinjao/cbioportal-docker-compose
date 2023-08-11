@@ -74,7 +74,6 @@ jobs:
     steps:
       - name: import-data
         run: |
-              docker exec -it cbioportal-container -- 'metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o'
-
+          metaImport.py -u https://cbioportal-pr-13-justinjao.cloud.okteto.net/ -s study/lgg_ucsf_2014/ -o'
     # - name: Run Data Import
     #  run: docke cbioportal-conta -- 'metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o'
