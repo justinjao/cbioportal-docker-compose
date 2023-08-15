@@ -25,10 +25,7 @@ jobs:
 #     - name: "Build"
 #       uses: okteto/build@latest
         
-    - name: "Activate Namespace"
-      uses: okteto/namespace@latest
-      with:
-        name: justinjao
+
 
     # - name: "Trigger the pipeline"
     #   uses: okteto/pipeline@latest
@@ -45,6 +42,11 @@ jobs:
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
+
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        name: justinjao
 
     - name: Deploy preview environment
       uses: okteto/deploy-preview@latest
