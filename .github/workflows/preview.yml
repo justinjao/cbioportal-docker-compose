@@ -25,10 +25,10 @@ jobs:
 #     - name: "Build"
 #       uses: okteto/build@latest
         
-#     - name: "Activate Namespace"
-#       uses: okteto/namespace@latest
-#       with:
-#         name: justinjao
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        name: justinjao
 
     # - name: "Trigger the pipeline"
     #   uses: okteto/pipeline@latest
