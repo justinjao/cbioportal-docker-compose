@@ -1,3 +1,24 @@
+Skip to content
+justinjao
+/
+cbioportal-docker-compose
+
+Type / to search
+
+Code
+Pull requests
+6
+Actions
+Projects
+Security
+Insights
+Settings
+.github/workflows/preview.yml
+Update preview.yml #55
+Jobs
+Run details
+Workflow file for this run
+.github/workflows/preview.yml at 1858fc6
 on:
   pull_request:
     branches:
@@ -8,45 +29,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-#     - name: pwd
-#       run: pwd
-#       shell: bash
-#     - name: ls
-#       run: ls
-#       shell: bash
 
-#     - name: run init
-#       run: ./init.sh
-#       shell: bash
-
-
-#       run: ./init.sh
-      
-#     - name: "Build"
-#       uses: okteto/build@latest
         
-
-
-    # - name: "Trigger the pipeline"
-    #   uses: okteto/pipeline@latest
-    #   with:
-    #     name: pr-${{ github.event.number }}
-    #     timeout: 8m
-    #     skipIfExists: true
-#         variables: "DOCKER_IMAGE_CBIOPORTAL=cbioportal/cbioportal:5.3.8,DOCKER_IMAGE_SESSION_SERVICE=cbioportal/session-service:0.6.1,DOCKER_IMAGE_MYSQL=mysql:5.7"
-
-#         variables: "DB_HOST=mysql,CONFIG_PATH=/tmp/config.yaml"
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        name: justinjao
 
     - name: Context
       uses: okteto/context@latest
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
-
-    # - name: "Activate Namespace"
-    #   uses: okteto/namespace@latest
-    #   with:
-    #     name: justinjao
 
     - name: Deploy preview environment
       uses: okteto/deploy-preview@latest
@@ -64,18 +58,7 @@ jobs:
         timeout: 600000 # 10 minutes
         interval: 30000 # 30 seconds
 
-  import:
-    runs-on: ubuntu-latest
-    needs: preview
-    container: 
-      image: cbioportal/cbioportal:5.3.8
-       # image: registry.cloud.okteto.net/justinjao/cbioportal-docker-compose-cbioportal:okteto-with-volume-mounts # cbioportal-container
-#       credentials:
-#         username: ${{ github.actor }}
-#         password: ${{ secrets.github_token }}
-    steps:
-      - name: import-data
-        run: |
-          metaImport.py -u https://cbioportal-pr-13-justinjao.cloud.okteto.net/ -s study/lgg_ucsf_2014/ -o
-    # - name: Run Data Import
-    #  run: docke cbioportal-conta -- 'metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o'
+    - name: Kubectl test
+      run: |
+      okteto kubeconfig
+      kubectl exec -it cbioportal -- metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o
