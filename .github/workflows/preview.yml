@@ -9,17 +9,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-        
-    - name: "Activate Namespace"
-      uses: okteto/namespace@latest
-      with:
-        namespace: pr-${{github.event.number}}-justinjao
+
 
     - name: Context
       uses: okteto/context@latest
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
+
+            
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        namespace: pr-${{github.event.number}}-justinjao
 
     - name: Deploy preview environment
       uses: okteto/deploy-preview@latest
