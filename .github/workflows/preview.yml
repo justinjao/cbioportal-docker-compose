@@ -13,7 +13,7 @@ jobs:
     - name: "Activate Namespace"
       uses: okteto/namespace@latest
       with:
-        name: pr-${{github.event.number}}-justinjao
+        namespace: pr-${{github.event.number}}-justinjao
 
     - name: Context
       uses: okteto/context@latest
