@@ -15,6 +15,7 @@ jobs:
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
+        namespace: pr-${{ github.event.number }}-justinjao
 
     - name: "Trigger the pipeline"
       uses: okteto/pipeline@latest
