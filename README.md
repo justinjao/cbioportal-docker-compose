@@ -3,11 +3,11 @@ Download necessary files (seed data, example config and example study from
 datahub):
 ```
 ./init.sh
-```
+```      
 
 Start docker containers. This can take a few minutes the first time because the
 database needs to import some data.
-```
+```  
 docker compose up
 ```
 If you are developing and want to expose the database for inspection through a program like Sequel Pro, run:

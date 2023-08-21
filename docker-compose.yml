@@ -1,6 +1,6 @@
 version: '3'
 
-services:
+services: 
   cbioportal:
     restart: unless-stopped
     image: ${DOCKER_IMAGE_CBIOPORTAL}
@@ -27,6 +27,8 @@ services:
       MYSQL_USER: cbio_user
       MYSQL_PASSWORD: somepassword
       MYSQL_ROOT_PASSWORD: somepassword
+    ports:
+     - "3306:3306"
     volumes:
      - ./data/cgds.sql:/docker-entrypoint-initdb.d/cgds.sql
      - ./data/seed.sql.gz:/docker-entrypoint-initdb.d/seed.sql.gz

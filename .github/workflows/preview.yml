@@ -3,40 +3,19 @@ on:
     branches:
       - test-master
 
-jobs:
+jobs:  
   preview:
     runs-on: ubuntu-latest
+    container: docker.io/okteto/okteto:2.19.0
     steps:
     - uses: actions/checkout@v2
-#     - name: pwd
-#       run: pwd
-#       shell: bash
-#     - name: ls
-#       run: ls
-#       shell: bash
-#     - name: run init
-#       run: ./init.sh
-#       shell: bash
+
     - name: Context
       uses: okteto/context@latest
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
-        
-#     - name: "Activate Namespace"
-#       uses: okteto/namespace@latest
-#       with:
-#         name: justinjao
 
-#     - name: "Trigger the pipeline"
-#       uses: okteto/pipeline@latest
-#       with:
-#         name: pr-${{ github.event.number }}
-#         timeout: 8m
-#         skipIfExists: true
-#         variables: "DOCKER_IMAGE_CBIOPORTAL=cbioportal/cbioportal:5.3.8,DOCKER_IMAGE_SESSION_SERVICE=cbioportal/session-service:0.6.1,DOCKER_IMAGE_MYSQL=mysql:5.7"
-
-#         variables: "DB_HOST=mysql,CONFIG_PATH=/tmp/config.yaml"
 
     - name: Deploy preview environment
       uses: okteto/deploy-preview@latest
@@ -46,6 +25,20 @@ jobs:
         name: pr-${{ github.event.number }}-justinjao
         timeout: 15m
     
-    - name: ls
-      run: ls data
-      shell: bash
+    - name: Wait For Response
+      uses: nev7n/wait_for_response@v1.0.1
+      with:
+        url: 'https://cbioportal-pr-${{ github.event.number }}-justinjao.cloud.okteto.net/'
+        responseCode: 200
+        timeout: 600000 # 10 minutes
+        interval: 30000 # 30 seconds
+
+    - name: "Activate Namespace"
+      uses: okteto/namespace@latest
+      with:
+        namespace: pr-${{github.event.number}}-justinjao
+
+    - name: Kubectl test
+      run: |
+        okteto kubeconfig
+        kubectl exec -it deployment/cbioportal -- metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o
