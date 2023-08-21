@@ -4,8 +4,4 @@ deploy:
    - ./init.sh
    - okteto build -t okteto.dev/cbioportal-docker-compose-cbioportal:okteto-with-volume-mounts cbioportal
    - okteto kubeconfig
-   #  - gunzip *.sql.gz
   compose: docker-compose.yml
-dev:
-  cbioportal:
-    command: okteto exec cbioportal -- 'metaImport.py -u http://localhost:8080 -s study/lgg_ucsf_2014/ -o' --loglevel debug
