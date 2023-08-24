@@ -1,4 +1,4 @@
-# Run cBioPortal using Docker Compose
+# Run cBioPortal using Docker Compose                
 Download necessary files (seed data, example config and example study from
 datahub):
 ```
