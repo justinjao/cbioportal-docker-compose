@@ -15,6 +15,7 @@ jobs:
       with:
         url: ${{secrets.OKTETO_URL}}
         token: ${{ secrets.OKTETO_TOKEN }}
+        namespace: pr-${{ github.event.number }}-justinjao
 
 
     - name: Deploy preview environment
@@ -28,7 +29,7 @@ jobs:
     - name: Wait For Response
       uses: nev7n/wait_for_response@v1.0.1
       with:
-        url: 'https://cbioportal-pr-${{ github.event.number }}-justinjao.cloud.okteto.net/'
+        url: 'https://cbioportal-justinjao.cloud.okteto.net/'
         responseCode: 200
         timeout: 600000 # 10 minutes
         interval: 30000 # 30 seconds
